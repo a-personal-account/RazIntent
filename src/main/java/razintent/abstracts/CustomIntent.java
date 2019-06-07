@@ -36,14 +36,7 @@ public abstract class CustomIntent {
     }
 
     public String damageNumber(AbstractMonster am) {
-        String result = null;
-        if(this.intent.name().contains("ATTACK")) {
-            result = Integer.toString((int) ReflectionHacks.getPrivate(am, AbstractMonster.class, "intentDmg"));
-            if((boolean)ReflectionHacks.getPrivate(am, AbstractMonster.class, "isMultiDmg")) {
-                result += "x" + Integer.toString((int) ReflectionHacks.getPrivate(am, AbstractMonster.class, "intentMultiAmt"));
-            }
-        }
-        return result;
+        return null;
     }
 
     public void updateVFX(AbstractMonster am) {

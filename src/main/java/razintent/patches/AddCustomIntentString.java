@@ -22,10 +22,15 @@ public class AddCustomIntentString {
     {
         if(CustomIntent.intents.containsKey(__instance.intent)) {
             CustomIntent ci = CustomIntent.intents.get(__instance.intent);
+            String damageNumber = ci.damageNumber(__instance);
+            if(damageNumber == null) {
+                return SpireReturn.Continue();
+            }
+
             BobEffect be = (BobEffect) ReflectionHacks.getPrivate(__instance, AbstractMonster.class, "bobEffect");
 
             int lineindex = 0;
-            String[] msg = ci.damageNumber(__instance).split("\\sNL\\s");
+            String[] msg = damageNumber.split("\\sNL\\s");
 
             do {
                 float x = __instance.intentHb.cX - 30.0F * Settings.scale;
