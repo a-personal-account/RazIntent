@@ -1,12 +1,13 @@
 package razintent.abstracts;
 
-import basemod.BaseMod;
 import basemod.ReflectionHacks;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -39,12 +40,12 @@ public abstract class CustomIntent {
             float intentParticleTimer = (float) ReflectionHacks.getPrivate(am, AbstractMonster.class, "intentParticleTimer");
             intentParticleTimer -= Gdx.graphics.getDeltaTime();
             if (intentParticleTimer <= 0.0F) {
-                intentParticleTimer = this.updateVFXInInterval(am);
+                intentParticleTimer = this.updateVFXInInterval(am, (ArrayList<AbstractGameEffect>)ReflectionHacks.getPrivate(am, AbstractMonster.class, "intentVfx"));
             }
             ReflectionHacks.setPrivate(am, AbstractMonster.class, "intentParticleTimer", intentParticleTimer);
         }
     }
-    public float updateVFXInInterval(AbstractMonster am) {
+    public float updateVFXInInterval(AbstractMonster am, ArrayList<AbstractGameEffect> intentVfx) {
         return 1.0F;
     }
 }
